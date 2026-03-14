@@ -11,13 +11,73 @@ This firmware runs on **anchor and tag nodes** in a UWB network and aims to enab
 
 ---
 
+# Getting Started
+
+This project uses **Nordic's nRF Connect SDK (based on Zephyr RTOS)** for firmware development.
+
+If you are new to nRF Connect, follow the official tutorial:
+
+https://academy.nordicsemi.com/courses/nrf-connect-sdk-fundamentals/
+
+The tutorial explains how to:
+
+- Install the nRF Connect SDK
+- Set up the toolchain
+- Configure VS Code extensions
+- Build Zephyr applications
+
+---
+
+# Using This Repository
+
+The main firmware logic is located in:
+
+`src/main.c`
+
+Open this file to modify or extend the firmware behavior such as:
+
+- ranging logic
+- packet transmission and reception
+- synchronization experiments
+- protocol modifications
+
+For API references and documentation related to the **DW3000 software stack**, refer to the documentation inside:
+
+`docs/`
+
+The software guide inside this folder describes the available API functions for:
+
+- configuring the UWB radio
+- transmitting and receiving packets
+- extracting timestamps
+- controlling radio parameters
+
+---
+
+# Building and Flashing
+
+After making changes:
+
+1. Open the project in **VS Code with the nRF Connect extension installed**
+2. Build the firmware using the **nRF Connect build system**
+3. Flash the firmware to the board using **nRF Connect**
+
+Typical workflow:
+
+1. Modify firmware in `src/main.c`
+2. Build the project
+3. Flash the firmware to the DWM3001C board
+
+---
+
 # Background
 
 UWB radios estimate distance by measuring **time-of-flight of radio signals**, allowing **centimeter-level localization accuracy**.
 
-Two main localization approaches are used:
+Two main localization approaches are used.
 
 ### DS-TWR
+
 Two devices exchange packets and compute distance using round-trip timing.
 
 - No global clock synchronization required  
@@ -25,6 +85,7 @@ Two devices exchange packets and compute distance using round-trip timing.
 - Less scalable for large tag networks  
 
 ### TDoA
+
 A tag broadcasts a packet that is received by multiple anchors.
 
 Each anchor records a **precise reception timestamp**, and the **difference between timestamps** is used to compute the tag position.
@@ -53,9 +114,10 @@ However, the vendor firmware limited deeper experimentation.
 
 # Why Custom Firmware?
 
-The official firmware introduced several limitations:
+The official firmware introduced several limitations.
 
 ### Closed Firmware Stack
+
 The core firmware cannot be modified, preventing experimentation with:
 
 - radio behavior
@@ -64,9 +126,11 @@ The core firmware cannot be modified, preventing experimentation with:
 - synchronization mechanisms
 
 ### Anchor Limit
+
 The vendor firmware supports a **maximum of 8 anchors**, limiting scalability.
 
 ### Limited Radio Control
+
 Important parameters such as:
 
 - transmission power  
@@ -112,6 +176,7 @@ Current work focuses on **Ethernet-based synchronization**, which offers:
 ---
 
 # Current Progress
+
 - **DS-TWR implemented for a single anchor–tag pair**
 - Currently extending DS-TWR to **multi-anchor ranging**
 - Developing TDoA firmware
@@ -124,11 +189,13 @@ Current work focuses on **Ethernet-based synchronization**, which offers:
 The final goal is to build an **open UWB localization firmware stack** supporting:
 
 ### DS-TWR
+
 - Anchor ↔ tag ranging  
 - Distance estimation  
 - Multi-anchor localization  
 
 ### TDoA
+
 - Synchronized anchor networks  
 - High precision timestamp capture  
 - Scalable multi-tag tracking  
