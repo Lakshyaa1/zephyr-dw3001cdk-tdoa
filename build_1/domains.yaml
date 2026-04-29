@@ -1,0 +1,7 @@
+default: zephyr-dw3001cdk-tdoa
+build_dir: /home/lakshya/zephyr-dw3001cdk-tdoa/build_1
+domains:
+  - name: zephyr-dw3001cdk-tdoa
+    build_dir: /home/lakshya/zephyr-dw3001cdk-tdoa/build_1/zephyr-dw3001cdk-tdoa
+flash_order:
+  - zephyr-dw3001cdk-tdoa

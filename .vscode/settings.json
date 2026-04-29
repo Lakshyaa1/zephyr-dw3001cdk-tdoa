@@ -1,0 +1,6 @@
+{
+    "nrf-connect.applications": [
+        "${workspaceFolder}/samples/ds_twr_multi",
+        "${workspaceFolder}/samples/tag_tdoa"
+    ]
+}

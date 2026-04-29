@@ -1,4 +1,5 @@
 #include <string.h>
+#include <stdint.h>
 #include <zephyr/kernel.h>
 #include <zephyr/logging/log.h>
 
@@ -9,8 +10,8 @@
 
 LOG_MODULE_REGISTER(ds_twr, LOG_LEVEL_INF);
 
-#define ROLE_INITIATOR 0
-#define NODE_ID        2
+#define ROLE_INITIATOR 1 // 1 for initiator, 0 for anchor 
+#define NODE_ID        4 // make sure all boards have unique NODE_ID
 #define ANT_DLY 26194
 
 #define SPEED_OF_LIGHT 299702547.0
@@ -23,6 +24,8 @@ LOG_MODULE_REGISTER(ds_twr, LOG_LEVEL_INF);
 #define MSG_RESP  0x02
 #define MSG_FINAL  0x03
 #define MSG_REPORT 0x04
+#define ANCHOR_ID_MIN 1
+#define ANCHOR_ID_MAX 10
 
 static dwt_config_t config = {
     .chan = 9,
@@ -80,9 +83,6 @@ static int uwb_init()
 
 #if ROLE_INITIATOR
 
-#define NUM_ANCHORS 2
-static uint8_t anchor_list[NUM_ANCHORS]={1,2};
-
 static void initiator_loop()
 {
     dwt_setrxtimeout(5000);
@@ -95,9 +95,12 @@ static void initiator_loop()
 
     while(1)
     {
-        for(int a=0;a<NUM_ANCHORS;a++)
+        for(uint16_t id = ANCHOR_ID_MIN; id <= ANCHOR_ID_MAX; id++)
         {
-            uint8_t anchor_id=anchor_list[a];
+            uint8_t anchor_id = (uint8_t)id;
+            if (anchor_id == NODE_ID) {
+                continue;
+            }
 
             poll_msg[0]=MSG_POLL;
             poll_msg[1]=seq;
@@ -121,7 +124,7 @@ static void initiator_loop()
 
             if(!(status & DWT_INT_RXFCG_BIT_MASK))
             {
-                LOG_WRN("No RESP from anchor %d",anchor_id);
+                LOG_WRN("No RESP from anchor %u", anchor_id);
                 dwt_writesysstatuslo(DWT_INT_RXFCG_BIT_MASK |
                     SYS_STATUS_ALL_RX_TO | SYS_STATUS_ALL_RX_ERR);
                 continue;
@@ -130,7 +133,7 @@ static void initiator_loop()
             uint16_t len=dwt_getframelength();
             dwt_readrxdata(resp_msg,len-FCS_LEN,0);
 
-            if(resp_msg[0]!=MSG_RESP)
+            if(resp_msg[0]!=MSG_RESP || resp_msg[2]!=NODE_ID || resp_msg[3]!=anchor_id)
             {
                 dwt_writesysstatuslo(DWT_INT_RXFCG_BIT_MASK |
                     SYS_STATUS_ALL_RX_TO | SYS_STATUS_ALL_RX_ERR);
@@ -178,7 +181,7 @@ static void initiator_loop()
 
             if(!(status & DWT_INT_RXFCG_BIT_MASK))
             {
-                LOG_WRN("No REPORT from anchor %d",anchor_id);
+                LOG_WRN("No REPORT from anchor %u", anchor_id);
                 dwt_writesysstatuslo(DWT_INT_RXFCG_BIT_MASK |
                     SYS_STATUS_ALL_RX_TO | SYS_STATUS_ALL_RX_ERR);
                 continue;
@@ -187,7 +190,7 @@ static void initiator_loop()
             len=dwt_getframelength();
             dwt_readrxdata(report_buf,len-FCS_LEN,0);
 
-            if(report_buf[0]!=MSG_REPORT)
+            if(report_buf[0]!=MSG_REPORT || report_buf[2]!=NODE_ID || report_buf[3]!=anchor_id)
             {
                 dwt_writesysstatuslo(DWT_INT_RXFCG_BIT_MASK |
                     SYS_STATUS_ALL_RX_TO | SYS_STATUS_ALL_RX_ERR);
@@ -198,7 +201,7 @@ static void initiator_loop()
             memcpy(&dist_f,&report_buf[4],4);
             double dist=(double)dist_f;
 
-            LOG_INF("Anchor %d: %.2f m  seq=%d",anchor_id,dist,seq);
+            LOG_INF("Anchor %u: %.2f m  seq=%u tag=%u", anchor_id, dist, seq, NODE_ID);
 
             dwt_writesysstatuslo(DWT_INT_RXFCG_BIT_MASK |
                 SYS_STATUS_ALL_RX_TO | SYS_STATUS_ALL_RX_ERR);

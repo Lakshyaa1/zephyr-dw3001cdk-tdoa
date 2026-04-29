@@ -1,0 +1,19 @@
+{
+  "toolchainPath": "/home/lakshya/ncs/toolchains/c5be9c56c7",
+  "sdkPath": "/home/lakshya/ncs/v3.1.0",
+  "board": "decawave_dwm3001cdk/nrf52833",
+  "boardDir": "/home/lakshya/ncs/v3.1.0/zephyr/boards/qorvo/decawave_dwm3001cdk",
+  "boardDirs": [
+    "/home/lakshya/ncs/v3.1.0/zephyr/boards/qorvo/decawave_dwm3001cdk"
+  ],
+  "optimizations": "none",
+  "cmakeArgs": [],
+  "confFiles": [
+    "prj.conf"
+  ],
+  "buildDirectory": "build_1",
+  "kconfigFragments": [],
+  "snippets": [],
+  "dtcOverlays": [],
+  "extraDtcOverlays": []
+}

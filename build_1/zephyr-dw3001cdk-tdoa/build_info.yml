@@ -1,0 +1,59 @@
+cmake:
+  application:
+    configuration-dir: '/home/lakshya/zephyr-dw3001cdk-tdoa'
+    source-dir: '/home/lakshya/zephyr-dw3001cdk-tdoa'
+  board:
+    name: 'decawave_dwm3001cdk'
+    path:
+     - '/home/lakshya/ncs/v3.1.0/zephyr/boards/qorvo/decawave_dwm3001cdk'
+    qualifiers: 'nrf52833'
+    revision: ''
+  devicetree:
+    bindings-dirs:
+     - '/home/lakshya/zephyr-dw3001cdk-tdoa/dts/bindings'
+     - '/home/lakshya/ncs/v3.1.0/nrf/dts/bindings'
+     - '/home/lakshya/ncs/v3.1.0/zephyr/dts/bindings'
+    files:
+     - '/home/lakshya/ncs/v3.1.0/zephyr/boards/qorvo/decawave_dwm3001cdk/decawave_dwm3001cdk.dts'
+     - '/home/lakshya/zephyr-dw3001cdk-tdoa/boards/decawave_dwm3001cdk.overlay'
+    include-dirs:
+     - '/home/lakshya/zephyr-dw3001cdk-tdoa/dts'
+     - '/home/lakshya/ncs/v3.1.0/nrf/include'
+     - '/home/lakshya/ncs/v3.1.0/nrf/dts/common'
+     - '/home/lakshya/ncs/v3.1.0/nrf/dts/riscv'
+     - '/home/lakshya/ncs/v3.1.0/nrf/dts/arm'
+     - '/home/lakshya/ncs/v3.1.0/nrf/dts'
+     - '/home/lakshya/ncs/v3.1.0/zephyr/include'
+     - '/home/lakshya/ncs/v3.1.0/zephyr/include/zephyr'
+     - '/home/lakshya/ncs/v3.1.0/zephyr/dts/common'
+     - '/home/lakshya/ncs/v3.1.0/zephyr/dts/vendor'
+     - '/home/lakshya/ncs/v3.1.0/zephyr/dts/rx'
+     - '/home/lakshya/ncs/v3.1.0/zephyr/dts/x86'
+     - '/home/lakshya/ncs/v3.1.0/zephyr/dts/xtensa'
+     - '/home/lakshya/ncs/v3.1.0/zephyr/dts/sparc'
+     - '/home/lakshya/ncs/v3.1.0/zephyr/dts/riscv'
+     - '/home/lakshya/ncs/v3.1.0/zephyr/dts/posix'
+     - '/home/lakshya/ncs/v3.1.0/zephyr/dts/arm64'
+     - '/home/lakshya/ncs/v3.1.0/zephyr/dts/arm'
+     - '/home/lakshya/ncs/v3.1.0/zephyr/dts/arc'
+     - '/home/lakshya/ncs/v3.1.0/zephyr/dts'
+    user-files:
+     - '/home/lakshya/zephyr-dw3001cdk-tdoa/boards/decawave_dwm3001cdk.overlay'
+  kconfig:
+    files:
+     - '/home/lakshya/ncs/v3.1.0/zephyr/boards/qorvo/decawave_dwm3001cdk/decawave_dwm3001cdk_defconfig'
+     - '/home/lakshya/zephyr-dw3001cdk-tdoa/prj.conf'
+     - '/home/lakshya/zephyr-dw3001cdk-tdoa/build_1/zephyr-dw3001cdk-tdoa/zephyr/misc/generated/extra_kconfig_options.conf'
+     - '/home/lakshya/zephyr-dw3001cdk-tdoa/build_1/zephyr-dw3001cdk-tdoa/zephyr/.config.sysbuild'
+    user-files:
+     - 'prj.conf'
+  toolchain:
+    name: 'zephyr'
+    path: '/home/lakshya/ncs/toolchains/c5be9c56c7/opt/zephyr-sdk'
+  vendor-specific:
+    nordic:
+      svdfile: '/home/lakshya/ncs/v3.1.0/modules/hal/nordic/nrfx/mdk/nrf52833.svd'
+  zephyr:
+    version: '4.1.99'
+    zephyr-base: '/home/lakshya/ncs/v3.1.0/zephyr'
+version: '0.1.0'

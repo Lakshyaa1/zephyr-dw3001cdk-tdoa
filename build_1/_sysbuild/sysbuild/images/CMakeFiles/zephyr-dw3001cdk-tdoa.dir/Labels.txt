@@ -1,0 +1,13 @@
+# Target labels
+ zephyr-dw3001cdk-tdoa
+# Source files and their labels
+/home/lakshya/zephyr-dw3001cdk-tdoa/build_1/_sysbuild/sysbuild/images/CMakeFiles/zephyr-dw3001cdk-tdoa
+/home/lakshya/zephyr-dw3001cdk-tdoa/build_1/_sysbuild/sysbuild/images/CMakeFiles/zephyr-dw3001cdk-tdoa.rule
+/home/lakshya/zephyr-dw3001cdk-tdoa/build_1/_sysbuild/sysbuild/images/CMakeFiles/zephyr-dw3001cdk-tdoa-complete.rule
+/home/lakshya/zephyr-dw3001cdk-tdoa/build_1/_sysbuild/sysbuild/images/zephyr-dw3001cdk-tdoa-prefix/src/zephyr-dw3001cdk-tdoa-stamp/zephyr-dw3001cdk-tdoa-build.rule
+/home/lakshya/zephyr-dw3001cdk-tdoa/build_1/_sysbuild/sysbuild/images/zephyr-dw3001cdk-tdoa-prefix/src/zephyr-dw3001cdk-tdoa-stamp/zephyr-dw3001cdk-tdoa-configure.rule
+/home/lakshya/zephyr-dw3001cdk-tdoa/build_1/_sysbuild/sysbuild/images/zephyr-dw3001cdk-tdoa-prefix/src/zephyr-dw3001cdk-tdoa-stamp/zephyr-dw3001cdk-tdoa-download.rule
+/home/lakshya/zephyr-dw3001cdk-tdoa/build_1/_sysbuild/sysbuild/images/zephyr-dw3001cdk-tdoa-prefix/src/zephyr-dw3001cdk-tdoa-stamp/zephyr-dw3001cdk-tdoa-install.rule
+/home/lakshya/zephyr-dw3001cdk-tdoa/build_1/_sysbuild/sysbuild/images/zephyr-dw3001cdk-tdoa-prefix/src/zephyr-dw3001cdk-tdoa-stamp/zephyr-dw3001cdk-tdoa-mkdir.rule
+/home/lakshya/zephyr-dw3001cdk-tdoa/build_1/_sysbuild/sysbuild/images/zephyr-dw3001cdk-tdoa-prefix/src/zephyr-dw3001cdk-tdoa-stamp/zephyr-dw3001cdk-tdoa-patch.rule
+/home/lakshya/zephyr-dw3001cdk-tdoa/build_1/_sysbuild/sysbuild/images/zephyr-dw3001cdk-tdoa-prefix/src/zephyr-dw3001cdk-tdoa-stamp/zephyr-dw3001cdk-tdoa-update.rule
